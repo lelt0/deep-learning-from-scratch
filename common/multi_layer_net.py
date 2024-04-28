@@ -15,7 +15,7 @@ class MultiLayerNet:
     input_size : 入力サイズ（MNISTの場合は784）
     hidden_size_list : 隠れ層のニューロンの数のリスト（e.g. [100, 100, 100]）
     output_size : 出力サイズ（MNISTの場合は10）
-    activation : 'relu' or 'sigmoid'
+    activation : 'relu' or 'sigmoid' or 'pass'
     weight_init_std : 重みの標準偏差を指定（e.g. 0.01）
         'relu'または'he'を指定した場合は「Heの初期値」を設定
         'sigmoid'または'xavier'を指定した場合は「Xavierの初期値」を設定
@@ -34,7 +34,7 @@ class MultiLayerNet:
         self.__init_weight(weight_init_std)
 
         # レイヤの生成
-        activation_layer = {'sigmoid': Sigmoid, 'relu': Relu}
+        activation_layer = {'sigmoid': Sigmoid, 'relu': Relu, 'pass': PassThrough}
         self.layers = OrderedDict()
         for idx in range(1, self.hidden_layer_num+1):
             self.layers['Affine' + str(idx)] = Affine(self.params['W' + str(idx)],

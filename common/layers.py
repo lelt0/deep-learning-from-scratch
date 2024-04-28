@@ -4,6 +4,17 @@ from common.functions import *
 from common.util import im2col, col2im
 
 
+class PassThrough:
+    def __init__(self):
+        pass
+
+    def forward(self, x):
+        return x
+
+    def backward(self, dout):
+        return dout
+
+
 class Relu:
     def __init__(self):
         self.mask = None
